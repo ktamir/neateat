@@ -10,7 +10,7 @@ RSpec.describe 'Restaurant API', type: :request do
     # make HTTP get request before each example
     before { get '/restaurants' }
 
-    it { should respond_with 200 }
+    it { expect(response).to have_http_status(200) }
 
     it 'returns restaurants' do
       # Note `json` is a custom helper to parse JSON responses
@@ -24,7 +24,7 @@ RSpec.describe 'Restaurant API', type: :request do
     before { get "/restaurants/#{restaurant_id}" }
 
     context 'when the record exists' do
-      it { should respond_with 200 }
+      it { expect(response).to have_http_status(200) }
 
       it 'returns the restaurant' do
         expect(json).not_to be_empty
@@ -35,7 +35,7 @@ RSpec.describe 'Restaurant API', type: :request do
     context 'when the record does not exist' do
       let(:restaurant_id) { 100 }
 
-      it { should respond_with 404 }
+      it { expect(response).to have_http_status(404) }
 
       it 'returns a not found message' do
         expect(response.body).to match(/Couldn't find Restaurant/)
@@ -55,21 +55,23 @@ RSpec.describe 'Restaurant API', type: :request do
     context 'when the request is valid' do
       before { post '/restaurants', params: valid_attributes }
 
-      it { should respond_with 201 }
+      it { expect(response).to have_http_status(201) }
 
       it 'creates a restaurant' do
-        expect(json['title']).to eq('Restaurant')
+        expect(json['name']).to eq('Restaurant')
       end
     end
 
     context 'when the request is invalid' do
       before { post '/restaurants', params: { title: 'Restaurant' } }
 
-      it { should respond_with 422 }
+      it { expect(response).to have_http_status(422) }
 
       it 'returns a validation failure message' do
         expect(response.body)
-          .to match(/Validation failed: Cuisine can't be blank/)
+          .to match("Validation failed: Name can't be blank, Cuisine can't " \
+ "be blank, Rating is not a number, Accepts 10bis can't be blank, " \
+ "Address can't be blank, Max delivery time can't be blank")
       end
     end
   end
@@ -81,7 +83,7 @@ RSpec.describe 'Restaurant API', type: :request do
     context 'when the record exists' do
       before { put "/restaurants/#{restaurant_id}", params: valid_attributes }
 
-      it { should respond_with 204 }
+      it { expect(response).to have_http_status(204) }
 
       it 'updates the record' do
         expect(response.body).to be_empty
