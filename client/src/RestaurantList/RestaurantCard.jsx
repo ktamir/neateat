@@ -6,7 +6,7 @@ import './RestaurantCard.scss';
 import type { Restaurant } from '../flowTypes';
 
 type Props = {
-  restaurant: Object<Restaurant>,
+  restaurant: Restaurant
 }
 
 export const RestaurantCard = (props: Props) => {
@@ -15,7 +15,8 @@ export const RestaurantCard = (props: Props) => {
     <div className="card-details">
       <h3>{name}</h3>
       {accepts10bis && <span className="ten-bis">10bis</span>}
-      <div>Rating: {Array.from({ length: rating }, (_, i) => <span key={i}>⭐</span>)}</div>
+      <div>Rating: {Array.from({ length: rating }, (_, i) =>
+        <span aria-label="star" role="img" key={i}>⭐</span>)}</div>
     </div>
   </Card>);
 };

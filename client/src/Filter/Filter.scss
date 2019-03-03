@@ -1,20 +1,25 @@
+@import '../App';
+
 $filter-background-color: #f54343;
-  .filter {
-    background-color: $filter-background-color;
-    color: #ffffff;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    padding-bottom: 10px;
-    .filter-col {
-      margin: 10px;
-      width: 500px;
-      .filter-type {
-        margin-bottom: 5px;
-        text-align: left;
-      }
-      .filter-select {
-        width: 100%;
-      }
+.filter {
+  background-color: $filter-background-color;
+  color: $neateat-white;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding-bottom: 10px;
+
+  .filter-col {
+    margin: 10px;
+    width: 500px;
+
+    .filter-type {
+      margin-bottom: 5px;
+      text-align: left;
+    }
+
+    .filter-select {
+      width: 100%;
     }
   }
+}
