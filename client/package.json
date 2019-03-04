@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "antd": "^3.13.6",
+    "faker": "^4.1.0",
     "node-sass": "^4.11.0",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",

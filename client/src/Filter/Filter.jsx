@@ -1,17 +1,15 @@
 // @flow
+
 import React from 'react';
 import './Filter.scss';
 import { Select } from 'antd';
+import { cuisines } from '../mockStore';
 
 const Option = { Select };
 
 export const Filter = () => {
   // Array with values ranging from 30 to 120 with differences of 10 (30, 40, 50, ..., 120)
   const speedRange = [...Array(10)].map((_, i) => 30 + i * 10);
-
-  // To be retrieved from an API, etc...
-  const cuisines = [{ key: 'italian', displayName: 'Italian' }, { key: 'french', displayName: 'French' },
-    { key: 'burgers', displayName: 'Burgers' }];
 
   const ratingRange = [...Array(3)].map((_, i) => 1 + i);
 
