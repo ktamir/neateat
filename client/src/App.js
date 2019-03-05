@@ -1,28 +1,25 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.scss';
+// @flow
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
-}
+import React from 'react';
+import 'antd/dist/antd.css';
+import { Layout } from 'antd';
+import { AppHeader } from './AppHeader/AppHeader.jsx';
+import { Filter } from './Filter/Filter.jsx';
+import RestaurantList from './RestaurantList/RestaurantList.jsx';
+import { restaurants } from './mockStore';
 
-export default App;
+const { Content } = Layout;
+
+export default () => {
+  return (
+    <div className="neateat-app">
+      <Layout>
+        <AppHeader/>
+        <Filter/>
+        <Content>
+          <RestaurantList restaurants={restaurants}/>
+        </Content>
+      </Layout>
+    </div>
+  );
+};

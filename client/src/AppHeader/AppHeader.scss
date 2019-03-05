@@ -1,0 +1,28 @@
+@import '../App';
+
+.app-header {
+  background-image: url('pizza_shoot.png');
+  height: 250px;
+  text-align: center;
+  background-size: cover;
+
+  .main-title, .secondary-title {
+    color: $neateat-white;
+  }
+
+  .main-title {
+    font-size: 64px;
+    margin-top: 38px;
+    margin-bottom: 0;
+  }
+
+  .secondary-title {
+    margin-top: 6px;
+    font-size: 20px;
+    margin-bottom: 6px;
+  }
+
+  .search-restaurant-input {
+    width: 20%;
+  }
+}
