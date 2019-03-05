@@ -1,35 +1,29 @@
 // @flow
+
 import React, { Component } from 'react';
 import { RestaurantCard } from './RestaurantCard';
 import type { Restaurant } from '../flowTypes';
+import { fetchRestaurants } from '../store/restaurantActions';
+import { connect } from 'react-redux';
 
-type State = Array<Restaurant>
+type Props = { restaurants: Array<Restaurant>, fetchRestaurants: Function };
 
-class RestaurantList extends Component<{}, State> {
-  state = {
-    restaurants: [{
-      name: 'Chez Tamir',
-      cuisine: 'French',
-      rating: 2,
-      address: '7 Volman Yehuda, Tel Aviv, Israel',
-      deliveryTime: 50,
-      accepts10bis: true,
-    },
-    {
-      name: 'Mina Tomei',
-      cuisine: 'Asian',
-      rating: 3,
-      address: '4 Ha\'raba\'a, Tel Aviv, Israel',
-      deliveryTime: 60,
-      accepts10bis: true,
-    }],
-  };
+class RestaurantList extends Component<Props> {
+  componentDidMount(): void {
+    this.props.fetchRestaurants();
+  }
 
   render() {
-    return (<div className="restaurant-list">
-      {this.state.restaurants.map(restaurant => <RestaurantCard restaurant={restaurant}/>)}
-    </div>);
+    return (
+      <div className="restaurant-list">
+        {this.props.restaurants.map(restaurant => <RestaurantCard key={restaurant.id} restaurant={restaurant} />)}
+      </div>
+    );
   }
 }
 
-export default RestaurantList;
+const mapStateToProps = state => state;
+
+const mapDispatchToProps = dispatch => ({ fetchRestaurants: () => dispatch(fetchRestaurants) });
+
+export default connect(mapStateToProps, mapDispatchToProps)(RestaurantList);
