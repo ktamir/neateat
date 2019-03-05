@@ -5,10 +5,10 @@ import * as actionTypes from 'actionTypes';
 export type Restaurant = {
   name: string,
   cuisine: string,
-  rating: number,
+  rating: 1 | 2 | 3,
   address: string,
-  deliveryTime: number,
-  accepts10bis: boolean
+  maxDeliveryTime: number,
+  accepts10Bis: boolean
 };
 
 export type FetchRestaurantsRequestAction = {
