@@ -47,7 +47,7 @@ RSpec.describe 'Restaurant API', type: :request do
   describe 'POST /restaurant' do
     # valid payload
     let(:valid_attributes) do
-      { name: 'Restaurant', cuisine: 'French', rating: 2, accepts_10bis: true,
+      { name: 'Restaurant', cuisine: 'French', rating: 2, accepts_10_bis: true,
         address: '10 Derech Menachem Begin, Tel Aviv, Israel',
         max_delivery_time: 60 }
     end
