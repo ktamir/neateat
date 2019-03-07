@@ -2,6 +2,7 @@
 
 import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
+import { type Saga } from 'redux-saga';
 import { API_URL } from '../consts';
 
 function *fetchRestaurants() {
@@ -13,6 +14,6 @@ function *fetchRestaurants() {
   }
 }
 
-export function *fetchRestaurantsSaga() {
+export function *fetchRestaurantsSaga(): Saga<void> {
   yield takeLatest('FETCH_RESTAURANTS_REQUEST', fetchRestaurants);
 }

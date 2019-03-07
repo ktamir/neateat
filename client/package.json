@@ -5,7 +5,8 @@
   "dependencies": {
     "antd": "^3.13.6",
     "axios": "^0.18.0",
-    "faker": "^4.1.0",
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.10.0",
     "node-sass": "^4.11.0",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
@@ -31,6 +32,8 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "flow-bin": "^0.94.0"
+    "axios-mock-adapter": "^1.16.0",
+    "flow-bin": "^0.94.0",
+    "redux-mock-store": "^1.5.3"
   }
 }

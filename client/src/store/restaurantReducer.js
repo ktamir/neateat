@@ -1,6 +1,7 @@
 // @flow
 
-import type { Restaurant, RestaurantAction } from '../flowTypes';
+import type { Restaurant } from '../flowTypes';
+import { Action } from 'redux';
 
 type State = {
   restaurants: Array<Restaurant>,
@@ -9,7 +10,7 @@ type State = {
 
 const initialState = { restaurants: [], isLoading: false };
 
-export const restaurantReducer = (state: State = initialState, action: RestaurantAction): State => {
+export const restaurantReducer = (state: State = initialState, action: Action): State => {
   switch (action.type) {
     case 'FETCH_RESTAURANTS_REQUEST':
       return { ...state, isLoading: true };
