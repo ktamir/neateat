@@ -1,6 +1,6 @@
 // @flow
 
-export type Restaurant = {
+export type Restaurant = {|
   id: number,
   name: string,
   cuisine: string,
@@ -8,4 +8,8 @@ export type Restaurant = {
   address: string,
   maxDeliveryTime: number,
   accepts10Bis: boolean
-};
+|};
+
+export type NeatEatError = {|
+  title: string, description: string
+|};
