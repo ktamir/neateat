@@ -45,3 +45,5 @@ export const mockRestaurants = [
     accepts10Bis: true,
   },
 ];
+
+export const ratingRange = [...Array(3)].map((_, i) => 1 + i);
