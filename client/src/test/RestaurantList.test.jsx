@@ -1,10 +1,7 @@
-import { configure, mount, shallow } from 'enzyme/build';
+import { mount, shallow } from 'enzyme/build';
 import { RestaurantList } from '../RestaurantList/RestaurantList';
 import React from 'react';
-import Adapter from 'enzyme-adapter-react-16';
 import { mockRestaurants } from './testConsts';
-
-configure({ adapter: new Adapter() });
 
 describe('RestaurantList', () => {
   const fetchRestaurants = jest.fn();
