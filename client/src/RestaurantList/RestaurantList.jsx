@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Alert, Spin } from 'antd';
+import { Alert, Card, Spin } from 'antd';
 
 import { RestaurantCard } from './RestaurantCard';
 import type { NeatEatError, Restaurant } from '../flowTypes';
@@ -34,10 +34,14 @@ export class RestaurantList extends Component<Props> {
       );
     }
 
+    if (restaurants.length === 0) {
+      return <Card>No Restaurants matched :(</Card>;
+    }
+
     return (
       <div className="restaurant-list">
         {
-          isLoading ? <Spin tip="Loading..." /> :
+          isLoading && restaurants.length === 0 ? <Spin tip="Loading..." /> :
             restaurants.map(restaurant =>
               <RestaurantCard key={restaurant.id} restaurant={restaurant} />)
         }

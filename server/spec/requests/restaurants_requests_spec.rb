@@ -46,19 +46,15 @@ RSpec.describe 'Restaurant API', type: :request do
   # Test suite for POST /restaurants
   describe 'POST /restaurant' do
     # valid payload
-    let(:valid_attributes) do
-      { name: 'Restaurant', cuisine: 'French', rating: 2, accepts_10_bis: true,
-        address: '10 Derech Menachem Begin, Tel Aviv, Israel',
-        max_delivery_time: 60 }
-    end
+    let(:restaurant) { create(:restaurant) }
 
     context 'when the request is valid' do
-      before { post '/restaurants', params: valid_attributes }
+      before { post '/restaurants', params: restaurant.as_json }
 
       it { expect(response).to have_http_status(201) }
 
       it 'creates a restaurant' do
-        expect(json['name']).to eq('Restaurant')
+        expect(json['name']).to eq(restaurant.name)
       end
     end
 
@@ -70,7 +66,7 @@ RSpec.describe 'Restaurant API', type: :request do
       it 'returns a validation failure message' do
         expect(response.body)
           .to match("Validation failed: Name can't be blank, Cuisine can't " \
- "be blank, Rating is not a number, Accepts 10bis can't be blank, " \
+ "be blank, Rating is not a number, Accepts 10 bis can't be blank, " \
  "Address can't be blank, Max delivery time can't be blank")
       end
     end
