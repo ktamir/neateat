@@ -1,10 +1,11 @@
 // @flow
 
 import React from 'react';
-import './Filter.scss';
 import { Select } from 'antd';
 import { cuisines } from '../consts';
 import { ratingRange } from '../consts';
+
+import './Filter.scss';
 
 export const Filter = () => {
   // Array with values ranging from 30 to 120 with differences of 10 (30, 40, 50, ..., 120)

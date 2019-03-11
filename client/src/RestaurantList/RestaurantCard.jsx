@@ -2,12 +2,13 @@
 
 import { Card } from 'antd';
 import React from 'react';
-import './RestaurantCard.scss';
 import type { Restaurant } from '../flowTypes';
 
-type Props = {
+import './RestaurantCard.scss';
+
+type Props = {|
   restaurant: Restaurant
-}
+|}
 
 export const RestaurantCard = (props: Props) => {
   const { name, accepts10Bis, rating } = props.restaurant;

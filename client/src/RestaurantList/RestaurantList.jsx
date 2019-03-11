@@ -1,13 +1,19 @@
 // @flow
 
 import React, { Component } from 'react';
-import { RestaurantCard } from './RestaurantCard';
-import type { Restaurant } from '../flowTypes';
-import { fetchRestaurants } from '../store/restaurantActions';
 import { connect } from 'react-redux';
-import { Spin } from 'antd';
+import { Alert, Card, Spin } from 'antd';
 
-type Props = { restaurants: Array<Restaurant>, isLoading: boolean, fetchRestaurants: Function };
+import { RestaurantCard } from './RestaurantCard';
+import type { NeatEatError, Restaurant } from '../flowTypes';
+import { fetchRestaurants } from '../store/restaurantActions';
+
+import './RestaurantList.scss';
+
+type Props = {|
+  restaurants: Array<Restaurant>, isLoading: boolean, fetchRestaurants: Function,
+  error?: NeatEatError
+|};
 
 export class RestaurantList extends Component<Props> {
   componentDidMount(): void {
@@ -15,11 +21,27 @@ export class RestaurantList extends Component<Props> {
   }
 
   render() {
-    const { isLoading, restaurants } = this.props;
+    const { isLoading, restaurants, error } = this.props;
+
+    if (error) {
+      return (
+        <Alert
+          className="restaurant-fetch-error"
+          message={error.title}
+          description={error.description}
+          type="error"
+        />
+      );
+    }
+
+    if (restaurants.length === 0) {
+      return <Card>No Restaurants matched :(</Card>;
+    }
+
     return (
       <div className="restaurant-list">
         {
-          isLoading ? <Spin tip="Loading..." /> :
+          isLoading && restaurants.length === 0 ? <Spin tip="Loading..." /> :
             restaurants.map(restaurant =>
               <RestaurantCard key={restaurant.id} restaurant={restaurant} />)
         }
@@ -30,6 +52,8 @@ export class RestaurantList extends Component<Props> {
 
 const mapStateToProps = state => state;
 
-const mapDispatchToProps = dispatch => ({ fetchRestaurants: () => dispatch(fetchRestaurants) });
+const mapDispatchToProps = {
+  fetchRestaurants,
+};
 
 export const RestaurantListContainer = connect(mapStateToProps, mapDispatchToProps)(RestaurantList);

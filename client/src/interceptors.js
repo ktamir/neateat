@@ -9,6 +9,7 @@ export default () => {
   axios.interceptors.request.use((config: AxiosRequestConfig): AxiosRequestConfig => {
     // Change JSON keys to underscore
     config.data = decamelizeKeys(config.data);
+    config.headers = { ...config.headers, Accept: 'application/json' };
     return config;
   });
 

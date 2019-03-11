@@ -3,11 +3,13 @@
 import React from 'react';
 import 'antd/dist/antd.css';
 import { Layout } from 'antd';
-import { AppHeader } from './AppHeader/AppHeader.jsx';
-import { Filter } from './Filter/Filter.jsx';
-import { store } from './store';
 import { Provider } from 'react-redux';
+
+import { AppHeader } from './AppHeader/AppHeader';
+import { Filter } from './Filter/Filter';
+import { store } from './store';
 import { RestaurantListContainer } from './RestaurantList/RestaurantList';
+
 
 const { Content } = Layout;
 
@@ -16,10 +18,10 @@ export default () => {
     <Provider store={store}>
       <div className="neateat-app">
         <Layout>
-          <AppHeader/>
-          <Filter/>
+          <AppHeader />
+          <Filter />
           <Content>
-            <RestaurantListContainer/>
+            <RestaurantListContainer />
           </Content>
         </Layout>
       </div>

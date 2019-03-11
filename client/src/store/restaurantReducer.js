@@ -1,23 +1,27 @@
 // @flow
 
-import type { Restaurant } from '../flowTypes';
 import { Action } from 'redux';
 
-type State = {
+import type { NeatEatError, Restaurant } from '../flowTypes';
+import { FETCH_RESTAURANTS_ERROR, FETCH_RESTAURANTS_REQUEST, FETCH_RESTAURANTS_SUCCESS } from '../consts';
+
+type State = {|
   restaurants: Array<Restaurant>,
-  isLoading: boolean
-};
+  isLoading: boolean,
+  error?: NeatEatError
+|};
 
-const initialState = { restaurants: [], isLoading: false };
+const initialState = { restaurants: [], isLoading: false, error: null };
 
-export const restaurantReducer = (state: State = initialState, action: Action): State => {
+export default (state: State = initialState, action: Action): State => {
   switch (action.type) {
-    case 'FETCH_RESTAURANTS_REQUEST':
-      return { ...state, isLoading: true };
-    case 'FETCH_RESTAURANTS_SUCCESS':
-      return { ...state, isLoading: false, restaurants: action.data };
-    case 'FETCH_RESTAURANTS_FAILED':
-      return { ...state, isLoading: false, error: action.error };
+    case FETCH_RESTAURANTS_REQUEST:
+      return { ...state, isLoading: true, error: null };
+    case FETCH_RESTAURANTS_SUCCESS:
+      return { ...state, isLoading: false, restaurants: action.data, error: null };
+    case FETCH_RESTAURANTS_ERROR:
+      const { error, exception } = action.error;
+      return { ...state, isLoading: false, error: { title: error, description: exception } };
     default:
       return state;
   }

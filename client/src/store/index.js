@@ -1,6 +1,6 @@
 import { createStore, applyMiddleware } from 'redux';
-import { restaurantReducer } from './restaurantReducer';
 import createSagaMiddleware from 'redux-saga';
+import restaurantReducer from './restaurantReducer';
 import { fetchRestaurantsSaga } from './restaurantSaga';
 
 const sagaMiddleware = createSagaMiddleware();
