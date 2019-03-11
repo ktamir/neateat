@@ -8,7 +8,7 @@ import { FETCH_RESTAURANTS_ERROR, FETCH_RESTAURANTS_REQUEST, FETCH_RESTAURANTS_S
 type State = {|
   restaurants: Array<Restaurant>,
   isLoading: boolean,
-  error?: NeatEatError
+  error: ?NeatEatError
 |};
 
 const initialState = { restaurants: [], isLoading: false, error: null };

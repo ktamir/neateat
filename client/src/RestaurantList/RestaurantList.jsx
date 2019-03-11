@@ -11,8 +11,10 @@ import { fetchRestaurants } from '../store/restaurantActions';
 import './RestaurantList.scss';
 
 type Props = {|
-  restaurants: Array<Restaurant>, isLoading: boolean, fetchRestaurants: Function,
-  error?: NeatEatError
+  restaurants: Array<Restaurant>,
+  isLoading: boolean,
+  fetchRestaurants: Function,
+  error: ?NeatEatError
 |};
 
 export class RestaurantList extends Component<Props> {
@@ -34,19 +36,16 @@ export class RestaurantList extends Component<Props> {
       );
     }
 
+    if (isLoading) {
+      return <Spin tip="Loading..." />;
+    }
+
     if (restaurants.length === 0) {
       return <Card>No Restaurants matched :(</Card>;
     }
 
-    return (
-      <div className="restaurant-list">
-        {
-          isLoading && restaurants.length === 0 ? <Spin tip="Loading..." /> :
-            restaurants.map(restaurant =>
-              <RestaurantCard key={restaurant.id} restaurant={restaurant} />)
-        }
-      </div>
-    );
+    return restaurants.map(restaurant =>
+      <RestaurantCard key={restaurant.id} restaurant={restaurant} />);
   }
 }
 

@@ -11,5 +11,6 @@ export type Restaurant = {|
 |};
 
 export type NeatEatError = {|
-  title: string, description: string
+  title: string,
+  description: string
 |};
