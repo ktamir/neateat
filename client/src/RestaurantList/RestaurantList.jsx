@@ -36,15 +36,16 @@ export class RestaurantList extends Component<Props> {
       );
     }
 
+    if (isLoading) {
+      return <Spin tip="Loading..." />;
+    }
+
     if (restaurants.length === 0) {
-      if (isLoading) {
-        return <Spin tip="Loading..." />;
-      }
       return <Card>No Restaurants matched :(</Card>;
     }
 
     return restaurants.map(restaurant =>
-      <RestaurantCard key={restaurant.id} restaurant={restaurant} />)
+      <RestaurantCard key={restaurant.id} restaurant={restaurant} />);
   }
 }
 
