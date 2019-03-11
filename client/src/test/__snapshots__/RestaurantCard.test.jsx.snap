@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RestaurantCard should render correctly 1`] = `
+<Card
+  className="restaurant-card"
+>
+  <div
+    className="card-details"
+  >
+    <h3>
+      Chez Tamir
+    </h3>
+    <span
+      className="ten-bis"
+    >
+      10bis
+    </span>
+    <div>
+      Rating: 
+      <span
+        aria-label="star"
+        key="0"
+        role="img"
+      >
+        ⭐
+      </span>
+      <span
+        aria-label="star"
+        key="1"
+        role="img"
+      >
+        ⭐
+      </span>
+    </div>
+  </div>
+</Card>
+`;

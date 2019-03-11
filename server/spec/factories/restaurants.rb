@@ -6,7 +6,7 @@
 #  name              :string
 #  cuisine           :string
 #  rating            :integer
-#  accepts_10bis     :boolean
+#  accepts_10_bis    :boolean
 #  address           :string
 #  max_delivery_time :integer
 #  created_at        :datetime         not null
@@ -18,7 +18,7 @@ FactoryBot.define do
     name { Faker::Restaurant.name }
     cuisine { Faker::Restaurant.type }
     rating { Faker::Number.between(1, 3) }
-    accepts_10bis { Faker::Boolean }
+    accepts_10_bis { Faker::Boolean }
     address { Faker::Address }
     max_delivery_time { Faker::Number.between(30, 120) }
   end

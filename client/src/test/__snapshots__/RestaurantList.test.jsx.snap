@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RestaurantList should render loading correctly 1`] = `
+<div
+  className="restaurant-list"
+>
+  <Spin
+    size="default"
+    spinning={true}
+    tip="Loading..."
+    wrapperClassName=""
+  />
+</div>
+`;
+
+exports[`RestaurantList should render restaurants correctly 1`] = `
+<div
+  className="restaurant-list"
+>
+  <RestaurantCard
+    key="1"
+    restaurant={
+      Object {
+        "accepts10Bis": true,
+        "address": "144 Derech Menachem Begin, Tel Aviv, Israel",
+        "cuisine": "French",
+        "id": 1,
+        "maxDeliveryTime": 60,
+        "name": "Chez Tamir",
+        "rating": 2,
+      }
+    }
+  />
+  <RestaurantCard
+    key="2"
+    restaurant={
+      Object {
+        "accepts10Bis": true,
+        "address": "7 Derech Namir, Tel Aviv, Israel",
+        "cuisine": "Italian",
+        "id": 2,
+        "maxDeliveryTime": 100,
+        "name": "Tamir Trattoria",
+        "rating": 1,
+      }
+    }
+  />
+</div>
+`;

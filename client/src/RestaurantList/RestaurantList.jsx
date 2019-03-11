@@ -1,18 +1,58 @@
 // @flow
+
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Alert, Card, Spin } from 'antd';
+
 import { RestaurantCard } from './RestaurantCard';
-import type { Restaurant } from '../flowTypes';
+import type { NeatEatError, Restaurant } from '../flowTypes';
+import { fetchRestaurants } from '../store/restaurantActions';
 
-type Props = { restaurants: Array<Restaurant> }
+import './RestaurantList.scss';
 
-class RestaurantList extends Component<Props> {
+type Props = {|
+  restaurants: Array<Restaurant>,
+  isLoading: boolean,
+  fetchRestaurants: Function,
+  error: ?NeatEatError
+|};
+
+export class RestaurantList extends Component<Props> {
+  componentDidMount(): void {
+    this.props.fetchRestaurants();
+  }
+
   render() {
-    return (
-      <div className="restaurant-list">
-        {this.props.restaurants.map(restaurant => <RestaurantCard key={restaurant.id} restaurant={restaurant}/>)}
-      </div>
-    );
+    const { isLoading, restaurants, error } = this.props;
+
+    if (error) {
+      return (
+        <Alert
+          className="restaurant-fetch-error"
+          message={error.title}
+          description={error.description}
+          type="error"
+        />
+      );
+    }
+
+    if (isLoading) {
+      return <Spin tip="Loading..." />;
+    }
+
+    if (restaurants.length === 0) {
+      return <Card>No Restaurants matched :(</Card>;
+    }
+
+    return restaurants.map(restaurant =>
+      <RestaurantCard key={restaurant.id} restaurant={restaurant} />);
   }
 }
 
-export default RestaurantList;
+const mapStateToProps = state => state;
+
+const mapDispatchToProps = {
+  fetchRestaurants,
+};
+
+export const RestaurantListContainer = connect(mapStateToProps, mapDispatchToProps)(RestaurantList);

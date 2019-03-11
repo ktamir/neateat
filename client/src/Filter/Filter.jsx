@@ -1,11 +1,10 @@
 // @flow
 
 import React from 'react';
-import './Filter.scss';
 import { Select } from 'antd';
-import { cuisines } from '../mockStore';
+import { cuisines } from '../consts';
 
-const Option = { Select };
+import './Filter.scss';
 
 export const Filter = () => {
   // Array with values ranging from 30 to 120 with differences of 10 (30, 40, 50, ..., 120)
@@ -18,21 +17,25 @@ export const Filter = () => {
       <div className="filter-col">
         <div className="filter-type">Cuisine</div>
         <Select className="filter-select" placeholder="Italian, French, Burgers..." allowClear={true} size="large">
-          {cuisines.map(cuisine => <Option value={cuisine.key} key={cuisine.key}>{cuisine.displayName}</Option>)}
+          {cuisines.map(cuisine =>
+            <Select.Option value={cuisine.key} key={cuisine.key}>{cuisine.displayName}</Select.Option>,
+          )}
         </Select>
       </div>
 
       <div className="filter-col">
         <div className="filter-type">Rating</div>
         <Select className="filter-select" placeholder="1 to 3" allowClear={true} size="large">
-          {ratingRange.map(ratingOption => <Option value={ratingOption} key={ratingOption}>{ratingOption}</Option>)}
+          {ratingRange.map(ratingOption =>
+            <Select.Option value={ratingOption} key={ratingOption}>{ratingOption}</Select.Option>,
+          )}
         </Select>
       </div>
 
       <div className="filter-col">
         <div className="filter-type">Speed</div>
         <Select className="filter-select" placeholder="30 to 120 minutes" allowClear={true} size="large">
-          {speedRange.map(number => <Option key={number}>Up to {number} minutes</Option>)}
+          {speedRange.map(number => <Select.Option key={number}>Up to {number} minutes</Select.Option>)}
         </Select>
       </div>
     </div>
