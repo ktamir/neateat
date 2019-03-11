@@ -12,19 +12,19 @@ describe('RestaurantList', () => {
 
   it('should trigger fetch request', () => {
     mount(<RestaurantList restaurants={[]} fetchRestaurants={fetchRestaurants}
-      isLoading={false} />);
+                          fetchRestaurantsInProgress={false} />);
     expect(fetchRestaurants).toHaveBeenCalledTimes(1);
   });
 
   it('should render restaurants correctly', () => {
     let restaurantCard = shallow(<RestaurantList restaurants={mockRestaurants} fetchRestaurants={fetchRestaurants}
-      isLoading={false} />);
+                                                 fetchRestaurantsInProgress={false} />);
     expect(restaurantCard).toMatchSnapshot();
   });
 
   it('should render loading correctly', () => {
     let restaurantCard = shallow(<RestaurantList restaurants={[]} fetchRestaurants={fetchRestaurants}
-      isLoading={true} />);
+                                                 fetchRestaurantsInProgress={true} />);
     expect(restaurantCard).toMatchSnapshot();
   });
 });

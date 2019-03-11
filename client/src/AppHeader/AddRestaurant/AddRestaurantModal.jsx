@@ -1,28 +1,31 @@
 // @flow
 
-import React, { Component } from 'react';
+import React from 'react';
 import { Modal } from 'antd';
-import { WrappedAddRestaurantForm } from './AddRestaurantForm';
+import { AddRestaurantFormContainer } from './AddRestaurantForm';
+import { connect } from 'react-redux';
+import { hideAddRestaurantModal } from '../../store/uiActions';
 
 type Props = {
-  onModalClose: Function
+  isAddRestaurantModalVisible: boolean,
+  hideAddRestaurantModal: Function
 }
 
-type State = {
-  visible: boolean
-}
+export const AddRestaurantModal = (props: Props) => (
+  <Modal
+    title="Add a new restaurant"
+    visible={props.isAddRestaurantModalVisible}
+    footer={null}
+    onCancel={props.hideAddRestaurantModal}
+  >
+    <AddRestaurantFormContainer />
+  </Modal>
+);
 
-export class AddRestaurantModal extends Component<Props, State> {
-  render() {
-    return (
-      <Modal
-        title="Add a new restaurant"
-        visible={this.state.visible}
-        onOk={this.handleOk}
-        onCancel={this.handleCancel}
-      >
-        <WrappedAddRestaurantForm />
-      </Modal>
-    );
-  }
-}
+const mapDispatchToProps = {
+  hideAddRestaurantModal,
+};
+
+const mapStateToProps = state => state.ui;
+
+export const AddRestaurantModalContainer = connect(mapStateToProps, mapDispatchToProps)(AddRestaurantModal);

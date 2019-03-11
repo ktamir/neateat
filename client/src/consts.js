@@ -24,26 +24,14 @@ export const FETCH_RESTAURANTS_SUCCESS = 'FETCH_RESTAURANTS_SUCCESS';
 
 export const FETCH_RESTAURANTS_ERROR = 'FETCH_RESTAURANTS_ERROR';
 
-// Used in test snapshots
-export const mockRestaurants = [
-  {
-    id: 1,
-    name: 'Chez Tamir',
-    cuisine: 'French',
-    rating: 2,
-    address: '144 Derech Menachem Begin, Tel Aviv, Israel',
-    maxDeliveryTime: 60,
-    accepts10Bis: true,
-  },
-  {
-    id: 2,
-    name: 'Tamir Trattoria',
-    cuisine: 'Italian',
-    rating: 1,
-    address: '7 Derech Namir, Tel Aviv, Israel',
-    maxDeliveryTime: 100,
-    accepts10Bis: true,
-  },
-];
+export const ADD_RESTAURANT_REQUEST = 'ADD_RESTAURANT_REQUEST';
 
-export const ratingRange = [...Array(3)].map((_, i) => 1 + i);
+export const ADD_RESTAURANT_SUCCESS = 'ADD_RESTAURANT_SUCCESS';
+
+export const ADD_RESTAURANT_ERROR = 'ADD_RESTAURANT_ERROR';
+
+export const SHOW_ADD_RESTAURANT_MODAL = 'SHOW_ADD_RESTAURANT_MODAL';
+
+export const HIDE_ADD_RESTAURANT_MODAL = 'HIDE_ADD_RESTAURANT_MODAL';
+
+export const ratingRange: Array<number> = [...Array(3)].map((_, i) => 1 + i);
