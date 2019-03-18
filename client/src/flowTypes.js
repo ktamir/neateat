@@ -10,6 +10,11 @@ export type Restaurant = {|
   accepts10Bis: boolean
 |};
 
+export type Filter = {|
+  key: string,
+  value: string | number,
+|};
+
 export type NeatEatError = {|
   title: string,
   description: string
@@ -32,6 +37,11 @@ export type NeatEatErrorAction = {|
 
 export type NeatEatPlainAction = {|
   type: string
+|};
+
+export type NeatEatFilterAction = {|
+  type: string,
+  filter: Filter
 |};
 
 export type NeatEatAction = NeatEatDataAction & NeatEatErrorAction & NeatEatPlainAction;

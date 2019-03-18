@@ -34,4 +34,6 @@ export const SHOW_ADD_RESTAURANT_MODAL = 'SHOW_ADD_RESTAURANT_MODAL';
 
 export const HIDE_ADD_RESTAURANT_MODAL = 'HIDE_ADD_RESTAURANT_MODAL';
 
+export const SET_FILTER = 'SET_FILTER';
+
 export const ratingRange: Array<number> = [...Array(3)].map((_, i) => 1 + i);
