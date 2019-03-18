@@ -35,7 +35,6 @@ const initialState = {
 const filterReducer = (state: Filters = initialFilters, action: NeatEatFilterAction) => {
   switch (action.type) {
     case SET_FILTER:
-      console.log(action);
       return { ...state, [action.filter.key]: action.filter.value };
     default:
       return state;
