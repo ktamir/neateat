@@ -12,7 +12,7 @@ import {
   FETCH_RESTAURANTS_REQUEST,
   FETCH_RESTAURANTS_SUCCESS, HIDE_ADD_RESTAURANT_MODAL,
 } from '../consts';
-import type { NeatEatAction, NeatEatDataAction } from '../flowTypes';
+import type { NeatEatAction, NeatEatAddRestaurantAction, } from '../flowTypes';
 
 function *fetchRestaurants(): PutEffect<NeatEatAction> {
   try {
@@ -23,9 +23,9 @@ function *fetchRestaurants(): PutEffect<NeatEatAction> {
   }
 }
 
-function *addRestaurant(action: NeatEatDataAction): PutEffect<NeatEatAction> {
+function *addRestaurant(action: NeatEatAddRestaurantAction): PutEffect<NeatEatAction> {
   try {
-    const response = yield axios.post(`${API_URL}/restaurants`, action.data);
+    const response = yield axios.post(`${API_URL}/restaurants`, action.restaurant);
     yield put({ type: ADD_RESTAURANT_SUCCESS, data: response.data });
     yield put({ type: HIDE_ADD_RESTAURANT_MODAL });
   } catch (e) {
