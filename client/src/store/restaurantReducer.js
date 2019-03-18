@@ -13,6 +13,7 @@ type Filters = {|
   rating: ?number,
   cuisine: ?string,
   maxDeliveryTime: ?number,
+  name: string,
 |}
 
 type State = {|
@@ -24,16 +25,17 @@ type State = {|
   filters: Filters,
 |};
 
-const initialFilters = { rating: null, cuisine: null, maxDeliveryTime: null };
+const initialFilters = { rating: null, cuisine: null, maxDeliveryTime: null, name: '' };
 
 const initialState = {
   restaurants: [], fetchRestaurantsInProgress: false, addRestaurantInProgress: false,
-  fetchRestaurantsError: null, addRestaurantError: null, filters: initialFilters
+  fetchRestaurantsError: null, addRestaurantError: null, filters: initialFilters,
 };
 
 const filterReducer = (state: Filters = initialFilters, action: NeatEatFilterAction) => {
   switch (action.type) {
     case SET_FILTER:
+      console.log(action);
       return { ...state, [action.filter.key]: action.filter.value };
     default:
       return state;
