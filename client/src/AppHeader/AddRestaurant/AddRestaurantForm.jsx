@@ -9,19 +9,25 @@ import { addRestaurant } from '../../store/restaurantActions';
 
 import './AddRestaurantForm.scss';
 import { hideAddRestaurantModal } from '../../store/uiActions';
-import type { NeatEatError } from '../../flowTypes';
+import type { NeatEatAddRestaurantAction, NeatEatError, NeatEatPlainAction, Restaurant } from '../../flowTypes';
 
 type Props = {|
   form: FormComponentProps,
-  addRestaurant: Function,
-  hideAddRestaurantModal: Function,
+  addRestaurant: (Restaurant)=> NeatEatAddRestaurantAction,
+  hideAddRestaurantModal: ()=> NeatEatPlainAction,
   addRestaurantError: NeatEatError,
   addRestaurantInProgress: boolean
 |}
 
-export class AddRestaurantForm extends Component<Props> {
+type Rule = {|
+  type: string,
+  required: boolean,
+  message: string,
+  whitespace: boolean
+|};
 
-  validateDeliveryTime = (rule: any, value: number, callback: Function) => {
+export class AddRestaurantForm extends Component<Props> {
+  validateDeliveryTime = (rule: Rule, value: number, callback: (?string) => void) => {
     if (value < 30 || value > 120) {
       callback('Value must be between 30 to 120');
     } else {

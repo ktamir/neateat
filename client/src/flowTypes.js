@@ -20,9 +20,14 @@ export type ServerError = {|
   exception: string
 |};
 
-export type NeatEatDataAction = {|
+export type NeatEatFetchRestaurantsAction = {|
   type: string,
-  data: Object
+  data: Array<Restaurant>
+|};
+
+export type NeatEatAddRestaurantAction = {|
+  type: string,
+  restaurant: Restaurant
 |};
 
 export type NeatEatErrorAction = {|
@@ -34,4 +39,5 @@ export type NeatEatPlainAction = {|
   type: string
 |};
 
-export type NeatEatAction = NeatEatDataAction & NeatEatErrorAction & NeatEatPlainAction;
+export type NeatEatAction = NeatEatFetchRestaurantsAction & NeatEatAddRestaurantAction & NeatEatErrorAction &
+  NeatEatPlainAction;

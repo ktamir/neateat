@@ -43,7 +43,7 @@ export default (state: State = initialState, action: NeatEatAction): State => {
       return {
         ...state,
         addRestaurantInProgress: false,
-        restaurants: [...state.restaurants, action.data],
+        restaurants: [...state.restaurants, action.restaurant],
         addRestaurantError: null,
       };
     case ADD_RESTAURANT_ERROR: {
