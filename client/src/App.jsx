@@ -5,7 +5,7 @@ import 'antd/dist/antd.css';
 import { Layout } from 'antd';
 import { Provider } from 'react-redux';
 
-import { AppHeader } from './AppHeader/AppHeader';
+import { AppHeaderContainer } from './AppHeader/AppHeader';
 import { Filter } from './Filter/Filter';
 import { store } from './store';
 import { RestaurantListContainer } from './RestaurantList/RestaurantList';
@@ -18,7 +18,7 @@ export default () => {
     <Provider store={store}>
       <div className="neateat-app">
         <Layout>
-          <AppHeader />
+          <AppHeaderContainer />
           <Filter />
           <Content>
             <RestaurantListContainer />

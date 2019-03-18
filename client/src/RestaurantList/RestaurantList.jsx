@@ -12,9 +12,9 @@ import './RestaurantList.scss';
 
 type Props = {|
   restaurants: Array<Restaurant>,
-  isLoading: boolean,
+  fetchRestaurantsInProgress: boolean,
   fetchRestaurants: Function,
-  error: ?NeatEatError
+  fetchRestaurantsError: ?NeatEatError
 |};
 
 export class RestaurantList extends Component<Props> {
@@ -23,20 +23,20 @@ export class RestaurantList extends Component<Props> {
   }
 
   render() {
-    const { isLoading, restaurants, error } = this.props;
+    const { fetchRestaurantsInProgress, restaurants, fetchRestaurantsError } = this.props;
 
-    if (error) {
+    if (fetchRestaurantsError) {
       return (
         <Alert
           className="restaurant-fetch-error"
-          message={error.title}
-          description={error.description}
+          message={fetchRestaurantsError.title}
+          description={fetchRestaurantsError.description}
           type="error"
         />
       );
     }
 
-    if (isLoading) {
+    if (fetchRestaurantsInProgress) {
       return <Spin tip="Loading..." />;
     }
 
@@ -44,12 +44,16 @@ export class RestaurantList extends Component<Props> {
       return <Card>No Restaurants matched :(</Card>;
     }
 
-    return restaurants.map(restaurant =>
-      <RestaurantCard key={restaurant.id} restaurant={restaurant} />);
+    return (
+      <div>
+        {restaurants.map(restaurant =>
+          <RestaurantCard key={restaurant.id} restaurant={restaurant} />)}
+      </div>
+    );
   }
 }
 
-const mapStateToProps = state => state;
+const mapStateToProps = state => state.restaurants;
 
 const mapDispatchToProps = {
   fetchRestaurants,
