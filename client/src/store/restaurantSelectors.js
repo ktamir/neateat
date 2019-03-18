@@ -11,20 +11,20 @@ export const filteredRestaurants = createSelector(
   [restaurantSelector, cuisineSelector, ratingSelector, maxDeliveryTimeSelector, nameSelector],
   (restaurants, cuisine, rating, maxDeliveryTime, name) => {
     return restaurants.filter((restaurant: Restaurant): boolean => {
-      let condition = true;
+      let isMatched = true;
+      if (name) {
+        isMatched = isMatched && restaurant.name.includes(name);
+      }
       if (cuisine) {
-        condition = condition && restaurant.cuisine === cuisine;
+        isMatched = isMatched && restaurant.cuisine === cuisine;
       }
       if (rating) {
-        condition = condition && restaurant.rating >= rating;
+        isMatched = isMatched && restaurant.rating >= rating;
       }
       if (maxDeliveryTime) {
-        condition = condition && restaurant.maxDeliveryTime <= maxDeliveryTime;
+        isMatched = isMatched && restaurant.maxDeliveryTime <= maxDeliveryTime;
       }
-      if (name) {
-        condition = condition && restaurant.name.includes(name);
-      }
-      return condition;
+      return isMatched;
     });
   },
 );
