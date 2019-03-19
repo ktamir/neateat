@@ -9,7 +9,7 @@
 Restaurant.delete_all
 
 20.times do
-  Restaurant.create(
+  restaurant = Restaurant.create(
     name: Faker::Restaurant.name,
     cuisine: Faker::Restaurant.type,
     rating: Faker::Number.between(1, 3),
@@ -17,4 +17,13 @@ Restaurant.delete_all
     address: Faker::Address.street_address,
     max_delivery_time: Faker::Number.between(30, 120)
   )
+
+  5.times do
+    Review.create(
+      reviewer_name: Faker::Superhero.name,
+      rating: Faker::Number.between(1, 3),
+      description: Faker::Restaurant.review,
+      restaurant: restaurant.id
+    )
+  end
 end

@@ -23,4 +23,6 @@ RSpec.describe Restaurant, type: :model do
   it { should validate_presence_of :accepts_10_bis }
   it { should validate_presence_of :address }
   it { should validate_presence_of :max_delivery_time }
+
+  it { should have_many(:reviews).dependent(:destroy) }
 end

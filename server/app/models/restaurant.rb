@@ -21,4 +21,6 @@ class Restaurant < ApplicationRecord
   validates_presence_of :accepts_10_bis
   validates_presence_of :address
   validates_presence_of :max_delivery_time
+
+  has_many :reviews, dependent: :destroy
 end
