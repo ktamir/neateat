@@ -1,11 +1,13 @@
-import { createSelector } from 'reselect';
-import type { Restaurant } from '../flowTypes';
+// @flow
 
-const restaurantSelector = state => state.restaurants.restaurants;
-const cuisineSelector = state => state.restaurants.filters.cuisine;
-const ratingSelector = state => state.restaurants.filters.rating;
-const maxDeliveryTimeSelector = state => state.restaurants.filters.maxDeliveryTime;
-const nameSelector = state => state.restaurants.filters.name;
+import { createSelector } from 'reselect';
+import type { AppState, Restaurant } from '../flowTypes';
+
+const restaurantSelector = (state: AppState) => state.restaurants.restaurants;
+const cuisineSelector = (state: AppState) => state.restaurants.filters.cuisine;
+const ratingSelector = (state: AppState) => state.restaurants.filters.rating;
+const maxDeliveryTimeSelector = (state: AppState) => state.restaurants.filters.maxDeliveryTime;
+const nameSelector = (state: AppState) => state.restaurants.filters.name;
 
 export const filteredRestaurants = createSelector(
   [restaurantSelector, cuisineSelector, ratingSelector, maxDeliveryTimeSelector, nameSelector],

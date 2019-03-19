@@ -16,7 +16,7 @@ type Filters = {|
   name: string,
 |}
 
-type State = {|
+export type RestaurantState = {|
   restaurants: Array<Restaurant>,
   fetchRestaurantsInProgress: boolean,
   addRestaurantInProgress: boolean,
@@ -41,7 +41,7 @@ const filterReducer = (state: Filters = initialFilters, action: NeatEatFilterAct
   }
 };
 
-export default (state: State = initialState, action: NeatEatAction): State => {
+export default (state: RestaurantState = initialState, action: NeatEatAction): RestaurantState => {
   switch (action.type) {
     case FETCH_RESTAURANTS_REQUEST:
       return { ...state, fetchRestaurantsInProgress: true, fetchRestaurantsError: null };

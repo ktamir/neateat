@@ -1,5 +1,8 @@
 // @flow
 
+import type { RestaurantState } from './store/restaurantReducer';
+import type { UiState } from './store/uiReducer';
+
 export type Restaurant = {|
   id?: number,
   name: string,
@@ -51,3 +54,5 @@ export type NeatEatFilterAction = {|
 
 export type NeatEatAction = NeatEatFetchRestaurantsAction & NeatEatAddRestaurantAction & NeatEatErrorAction &
   NeatEatPlainAction & NeatEatFilterAction;
+
+export type AppState = { restaurants: RestaurantState, ui: UiState };
