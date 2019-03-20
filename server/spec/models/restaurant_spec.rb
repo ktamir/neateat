@@ -5,7 +5,6 @@
 #  id                :bigint(8)        not null, primary key
 #  name              :string
 #  cuisine           :string
-#  rating            :integer
 #  accepts_10_bis    :boolean
 #  address           :string
 #  max_delivery_time :integer

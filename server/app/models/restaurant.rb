@@ -5,7 +5,6 @@
 #  id                :bigint(8)        not null, primary key
 #  name              :string
 #  cuisine           :string
-#  rating            :integer
 #  accepts_10_bis    :boolean
 #  address           :string
 #  max_delivery_time :integer
@@ -23,4 +22,12 @@ class Restaurant < ApplicationRecord
   validates_presence_of :max_delivery_time
 
   has_many :reviews, dependent: :destroy
+
+  def rating
+    reviews.average(:rating)
+  end
+
+  def as_json(options = {})
+    super options.merge(methods: [:rating])
+  end
 end
