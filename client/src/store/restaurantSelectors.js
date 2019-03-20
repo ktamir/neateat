@@ -9,24 +9,19 @@ const ratingSelector = (state: AppState) => state.restaurants.filters.rating;
 const maxDeliveryTimeSelector = (state: AppState) => state.restaurants.filters.maxDeliveryTime;
 const nameSelector = (state: AppState) => state.restaurants.filters.name;
 
+const filterByName = (restaurant: Restaurant, name: string): boolean => !name || restaurant.name.includes(name);
+const filterByCuisine = (restaurant: Restaurant, cuisine: string): boolean => !cuisine || restaurant.cuisine === cuisine;
+const filterByRating = (restaurant: Restaurant, rating: number): boolean => !rating || restaurant.rating >= rating;
+const filterByMaxDeliveryTime = (restaurant: Restaurant, maxDeliveryTime: number): boolean =>
+  !maxDeliveryTime || restaurant.maxDeliveryTime <= maxDeliveryTime;
+
 export const filteredRestaurants = createSelector(
   [restaurantSelector, cuisineSelector, ratingSelector, maxDeliveryTimeSelector, nameSelector],
-  (restaurants, cuisine, rating, maxDeliveryTime, name) => {
+  (restaurants: Array<Restaurant>, cuisine: string, rating: number, maxDeliveryTime: number,
+    name: string): Array<Restaurant> => {
     return restaurants.filter((restaurant: Restaurant): boolean => {
-      let isMatched = true;
-      if (name) {
-        isMatched = isMatched && restaurant.name.includes(name);
-      }
-      if (cuisine) {
-        isMatched = isMatched && restaurant.cuisine === cuisine;
-      }
-      if (rating) {
-        isMatched = isMatched && restaurant.rating >= rating;
-      }
-      if (maxDeliveryTime) {
-        isMatched = isMatched && restaurant.maxDeliveryTime <= maxDeliveryTime;
-      }
-      return isMatched;
+      return filterByName(restaurant, name) && filterByCuisine(restaurant, cuisine) &&
+        filterByRating(restaurant, rating) && filterByMaxDeliveryTime(restaurant, maxDeliveryTime);
     });
   },
 );
