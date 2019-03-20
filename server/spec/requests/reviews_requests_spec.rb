@@ -23,7 +23,7 @@ RSpec.describe 'Review API', type: :request do
 
   # Test suite for GET /restaurants/:restaurant_id/reviews/:review_id
   describe 'GET /restaurants/:restaurant_id/reviews/:review_id' do
-    before { get "/restaurants/:restaurant_id/reviews/#{review_id}" }
+    before { get "/restaurants/#{restaurant_id}/reviews/#{review_id}" }
 
     context 'when the record exists' do
       it { expect(response).to have_http_status(200) }
@@ -70,7 +70,7 @@ RSpec.describe 'Review API', type: :request do
 
       it 'returns a validation failure message' do
         expect(response.body)
-          .to match("Validation failed: Rating is not a number, Restaurant can't be blank")
+          .to match(/Validation failed: Rating can't be blank/)
       end
     end
   end
@@ -80,7 +80,7 @@ RSpec.describe 'Review API', type: :request do
     let(:valid_attributes) { { description: 'Cool modified description' } }
 
     context 'when the record exists' do
-      before { put "/restaurants/#{restaurant_id}/reviews/#{restaurant_id}", params: valid_attributes }
+      before { put "/restaurants/#{restaurant_id}/reviews/#{review_id}", params: valid_attributes }
 
       it { expect(response).to have_http_status(204) }
 
