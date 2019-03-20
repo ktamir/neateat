@@ -23,7 +23,7 @@ Restaurant.delete_all
       reviewer_name: Faker::Superhero.name,
       rating: Faker::Number.between(1, 3),
       description: Faker::Restaurant.review,
-      restaurant: restaurant.id
+      restaurant: restaurant
     )
   end
 end
