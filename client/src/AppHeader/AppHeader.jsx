@@ -6,14 +6,17 @@ import { connect } from 'react-redux';
 
 import { AddRestaurantModalContainer } from './AddRestaurant/AddRestaurantModal';
 import { showAddRestaurantModal } from '../store/uiActions';
+import { changeFilter } from '../store/restaurantActions';
 
 import './AppHeader.scss';
 import addIcon from './add.png';
+import type { Filter, NeatEatFilterAction, NeatEatPlainAction } from '../flowTypes';
 
 const { Search } = Input;
 
 type Props = {|
-  showAddRestaurantModal: Function
+  showAddRestaurantModal: () => NeatEatPlainAction,
+  changeFilter: Filter => NeatEatFilterAction
 |};
 
 export const AppHeader = (props: Props) => (
@@ -25,6 +28,7 @@ export const AppHeader = (props: Props) => (
       placeholder="Find a restaurant..."
       size="large"
       className="search-restaurant-input"
+      onSearch={(value: string) => props.changeFilter({ key: 'name', value })}
     />
     <AddRestaurantModalContainer />
   </Layout.Header>
@@ -32,6 +36,7 @@ export const AppHeader = (props: Props) => (
 
 const mapDispatchToProps = {
   showAddRestaurantModal,
+  changeFilter,
 };
 
 export const AppHeaderContainer = connect(null, mapDispatchToProps)(AppHeader);

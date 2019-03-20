@@ -7,13 +7,13 @@ import {
   SHOW_ADD_RESTAURANT_MODAL,
 } from '../consts';
 
-type State = {|
+export type UiState = {|
   isAddRestaurantModalVisible: boolean
 |};
 
 const initialState = { isAddRestaurantModalVisible: false };
 
-export default (state: State = initialState, action: Action): State => {
+export default (state: UiState = initialState, action: Action): UiState => {
   switch (action.type) {
     case SHOW_ADD_RESTAURANT_MODAL:
       return { ...state, isAddRestaurantModalVisible: true };

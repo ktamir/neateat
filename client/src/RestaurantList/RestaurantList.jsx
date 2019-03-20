@@ -9,6 +9,7 @@ import type { NeatEatError, Restaurant } from '../flowTypes';
 import { fetchRestaurants } from '../store/restaurantActions';
 
 import './RestaurantList.scss';
+import { filteredRestaurants } from '../store/restaurantSelectors';
 
 type Props = {|
   restaurants: Array<Restaurant>,
@@ -53,7 +54,7 @@ export class RestaurantList extends Component<Props> {
   }
 }
 
-const mapStateToProps = state => state.restaurants;
+const mapStateToProps = state => ({ ...state.restaurants, restaurants: filteredRestaurants(state) });
 
 const mapDispatchToProps = {
   fetchRestaurants,

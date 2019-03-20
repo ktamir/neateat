@@ -1,5 +1,8 @@
 // @flow
 
+import type { RestaurantState } from './store/restaurantReducer';
+import type { UiState } from './store/uiReducer';
+
 export type Restaurant = {|
   id?: number,
   name: string,
@@ -8,6 +11,11 @@ export type Restaurant = {|
   address: string,
   maxDeliveryTime: number,
   accepts10Bis: boolean
+|};
+
+export type Filter = {|
+  key: string,
+  value: string | number,
 |};
 
 export type NeatEatError = {|
@@ -39,5 +47,12 @@ export type NeatEatPlainAction = {|
   type: string
 |};
 
+export type NeatEatFilterAction = {|
+  type: string,
+  filter: Filter
+|};
+
 export type NeatEatAction = NeatEatFetchRestaurantsAction & NeatEatAddRestaurantAction & NeatEatErrorAction &
-  NeatEatPlainAction;
+  NeatEatPlainAction & NeatEatFilterAction;
+
+export type AppState = { restaurants: RestaurantState, ui: UiState };
