@@ -1,11 +1,10 @@
 class ReviewsController < ApplicationController
-  before_action :set_restaurant
   before_action :set_review, only: %i(show update destroy)
 
   # GET /restaurants/:restaurant_id/reviews
   def index
-    @reviews = Review.where restaurant: @restaurant
-    json_response @reviews
+    @restaurant = Restaurant.find params[:restaurant_id]
+    json_response @restaurant.reviews
   end
 
   # POST /restaurants/:restaurant_id/reviews
@@ -36,10 +35,6 @@ class ReviewsController < ApplicationController
   def review_params
     # whitelist params
     params.permit :reviewer_name, :rating, :description, :restaurant_id
-  end
-
-  def set_restaurant
-    @restaurant = Restaurant.find params[:restaurant_id]
   end
 
   def set_review

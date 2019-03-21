@@ -27,8 +27,7 @@ RSpec.describe 'Restaurant API', type: :request do
       it { expect(response).to have_http_status(200) }
 
       it 'returns the restaurant' do
-        expect(json).not_to be_empty
-        expect(json['id']).to eq(restaurant_id)
+        expect(json).to include :id => restaurant_id
       end
     end
 
@@ -54,7 +53,7 @@ RSpec.describe 'Restaurant API', type: :request do
       it { expect(response).to have_http_status(201) }
 
       it 'creates a restaurant' do
-        expect(json['name']).to eq(restaurant.name)
+        expect(json).to include :name => restaurant.name
       end
     end
 

@@ -9,7 +9,7 @@ class RestaurantsController < ApplicationController
 
   # POST /restaurants
   def create
-    @restaurant = Restaurant.create!(restaurant_params)
+      @restaurant = Restaurant.create!(restaurant_params)
     json_response(@restaurant, :created)
   end
 
