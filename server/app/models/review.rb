@@ -17,6 +17,8 @@ class Review < ApplicationRecord
   validates_presence_of :restaurant
   belongs_to :restaurant
   after_save :set_average_rating, on: %i(create update destroy)
+  validates_numericality_of :rating, greater_than_or_equal_to: 1,
+                            less_than_or_equal_to: 3
 
   private
 

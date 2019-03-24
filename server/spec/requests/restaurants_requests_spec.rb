@@ -27,7 +27,7 @@ RSpec.describe 'Restaurant API', type: :request do
       it { expect(response).to have_http_status(200) }
 
       it 'returns the restaurant' do
-        expect(json).to include :id => restaurant_id
+        expect(json['id']).to be restaurant_id
       end
     end
 
@@ -53,7 +53,7 @@ RSpec.describe 'Restaurant API', type: :request do
       it { expect(response).to have_http_status(201) }
 
       it 'creates a restaurant' do
-        expect(json).to include :name => restaurant.name
+        expect(json['name']).to eq restaurant.name
       end
     end
 
@@ -65,7 +65,7 @@ RSpec.describe 'Restaurant API', type: :request do
       it 'returns a validation failure message' do
         expect(response.body)
           .to match("Validation failed: Name can't be blank, Cuisine can't " \
- "be blank, Rating is not a number, Accepts 10 bis can't be blank, " \
+ "be blank, Accepts 10 bis can't be blank, " \
  "Address can't be blank, Max delivery time can't be blank")
       end
     end

@@ -10,9 +10,6 @@ class ReviewsController < ApplicationController
   # POST /restaurants/:restaurant_id/reviews
   def create
     @review = Review.create! review_params
-    @restaurant = Restaurant.find params[:restaurant_id]
-    @restaurant.calculate_average_rating
-    @restaurant.save
     json_response @review, :created
   end
 
