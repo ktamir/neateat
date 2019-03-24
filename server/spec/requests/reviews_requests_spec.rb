@@ -30,7 +30,7 @@ RSpec.describe 'Review API', type: :request do
 
       it 'returns the review' do
         expect(json).not_to be_empty
-        expect(json).to include 'id' => review_id
+        expect(json['id']).to be review_id
       end
     end
 
@@ -56,8 +56,12 @@ RSpec.describe 'Review API', type: :request do
       it { expect(response).to have_http_status(201) }
 
       it 'creates a review' do
-        expect(json).to include 'description' => review.description, 'reviewer_name' => review.reviewer_name,
-                                'rating' => review.rating, 'restaurant_id' => restaurant_id
+        expect(json.with_indifferent_access).to include(
+          description: review.description,
+          reviewer_name: review.reviewer_name,
+          rating: review.rating,
+          restaurant_id: restaurant_id
+        )
       end
     end
 

@@ -16,4 +16,12 @@ class Review < ApplicationRecord
   validates_presence_of :rating
   validates_presence_of :restaurant
   belongs_to :restaurant
+  after_save :set_average_rating, on: %i(create update destroy)
+
+  private
+
+  def set_average_rating
+    restaurant.calculate_average_rating
+    restaurant.save
+  end
 end

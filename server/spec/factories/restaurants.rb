@@ -10,6 +10,7 @@
 #  max_delivery_time :integer
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
+#  rating            :float
 #
 
 FactoryBot.define do

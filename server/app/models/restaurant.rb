@@ -10,6 +10,7 @@
 #  max_delivery_time :integer
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
+#  rating            :float
 #
 
 class Restaurant < ApplicationRecord
@@ -18,14 +19,12 @@ class Restaurant < ApplicationRecord
   validates_presence_of :accepts_10_bis
   validates_presence_of :address
   validates_presence_of :max_delivery_time
+  validates_numericality_of :rating, greater_than_or_equal_to: 1,
+                            less_than_or_equal_to: 3, allow_nil: true
 
   has_many :reviews, dependent: :destroy
 
-  def rating
-    reviews.average(:rating)
-  end
-
-  def as_json(options = {})
-    super options.merge(methods: [:rating])
+  def calculate_average_rating
+    self.rating = reviews.average(:rating)
   end
 end
