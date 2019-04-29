@@ -1,0 +1,76 @@
+I, [2019-04-29T17:08:27.435362 #26290]  INFO -- : Registered expected interaction GET /restaurants
+D, [2019-04-29T17:08:27.435573 #26290] DEBUG -- : {
+  "description": "a request for restaurants",
+  "request": {
+    "method": "GET",
+    "path": "/restaurants"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    "body": {
+      "json_class": "Pact::ArrayLike",
+      "contents": {
+        "id": 255,
+        "name": "Chez Tamir",
+        "cuisine": "french",
+        "accepts_10_bis": true,
+        "address": "144 Derech Menachem Begin",
+        "max_delivery_time": 60,
+        "created_at": "2019-03-31T12:06:12.685Z",
+        "updated_at": "2019-03-31T12:06:12.685Z",
+        "rating": 2
+      },
+      "min": 1
+    }
+  }
+}
+I, [2019-04-29T17:08:27.451331 #26290]  INFO -- : Received request GET /restaurants
+D, [2019-04-29T17:08:27.451420 #26290] DEBUG -- : {
+  "path": "/restaurants",
+  "query": "",
+  "method": "get",
+  "headers": {
+    "Accept": "application/json, text/plain, */*",
+    "Referer": "http://localhost/",
+    "User-Agent": "Mozilla/5.0 (darwin) AppleWebKit/537.36 (KHTML, like Gecko) jsdom/11.12.0",
+    "Accept-Language": "en",
+    "Origin": "http://localhost",
+    "Host": "localhost:8989",
+    "Accept-Encoding": "gzip, deflate",
+    "Connection": "close",
+    "Version": "HTTP/1.1"
+  }
+}
+I, [2019-04-29T17:08:27.451556 #26290]  INFO -- : Found matching response for GET /restaurants
+D, [2019-04-29T17:08:27.451625 #26290] DEBUG -- : {
+  "status": 200,
+  "headers": {
+    "Content-Type": "application/json; charset=utf-8"
+  },
+  "body": {
+    "json_class": "Pact::ArrayLike",
+    "contents": {
+      "id": 255,
+      "name": "Chez Tamir",
+      "cuisine": "french",
+      "accepts_10_bis": true,
+      "address": "144 Derech Menachem Begin",
+      "max_delivery_time": 60,
+      "created_at": "2019-03-31T12:06:12.685Z",
+      "updated_at": "2019-03-31T12:06:12.685Z",
+      "rating": 2
+    },
+    "min": 1
+  }
+}
+I, [2019-04-29T17:08:27.474147 #26290]  INFO -- : Verifying - interactions matched
+I, [2019-04-29T17:08:27.477447 #26290]  INFO -- : Cleared interactions
+I, [2019-04-29T17:08:27.481680 #26290]  INFO -- : Updating pact for neateat-server at /Users/tamir.kfir/onboarding/neateat/client/pacts/neateat-client-neateat-server.json
+I, [2019-04-29T17:08:27.482690 #26290]  INFO -- : *****************************************************************************
+I, [2019-04-29T17:08:27.482783 #26290]  INFO -- : Updating existing file ./Users/tamir.kfir/onboarding/neateat/client/pacts/neateat-client-neateat-server.json as pactfile_write_mode is :update
+I, [2019-04-29T17:08:27.482821 #26290]  INFO -- : Only interactions defined in this test run will be updated.
+I, [2019-04-29T17:08:27.482850 #26290]  INFO -- : As interactions are identified by description and provider state, pleased note that if either of these have changed, the old interactions won't be removed from the pact file until the specs are next run with :pactfile_write_mode => :overwrite.
+I, [2019-04-29T17:08:27.482876 #26290]  INFO -- : *****************************************************************************

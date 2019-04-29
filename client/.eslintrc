@@ -7,7 +7,7 @@
     "es6": true
   },
 
-  "plugins": ["react", "import"],
+  "plugins": ["react", "import", "jest"],
 
   "parserOptions": {
     "ecmaFeatures": {
