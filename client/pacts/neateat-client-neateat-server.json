@@ -26,8 +26,7 @@
             "address": "144 Derech Menachem Begin",
             "max_delivery_time": 60,
             "created_at": "2019-03-31T12:06:12.685Z",
-            "updated_at": "2019-03-31T12:06:12.685Z",
-            "rating": 2.0
+            "updated_at": "2019-03-31T12:06:12.685Z"
           }
         ],
         "matchingRules": {
@@ -35,6 +34,44 @@
             "min": 1
           },
           "$.body[*].*": {
+            "match": "type"
+          }
+        }
+      }
+    },
+    {
+      "description": "a request for adding a restaurant",
+      "request": {
+        "method": "POST",
+        "path": "/restaurants",
+        "headers": {
+          "Content-Type": "application/json;charset=utf-8"
+        },
+        "body": {
+          "name": "Fat Diner",
+          "cuisine": "Bar",
+          "accepts_10_bis": true,
+          "address": "422 Swift Groves",
+          "max_delivery_time": 103
+        }
+      },
+      "response": {
+        "status": 201,
+        "headers": {
+          "Content-Type": "application/json; charset=utf-8"
+        },
+        "body": {
+          "id": 257,
+          "name": "Fat Diner",
+          "cuisine": "Bar",
+          "accepts_10_bis": true,
+          "address": "422 Swift Groves",
+          "max_delivery_time": 103,
+          "created_at": "2019-04-29T09:15:06.451Z",
+          "updated_at": "2019-04-29T09:15:06.451Z"
+        },
+        "matchingRules": {
+          "$.body": {
             "match": "type"
           }
         }

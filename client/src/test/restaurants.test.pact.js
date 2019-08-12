@@ -1,7 +1,7 @@
-const { Pact, Matchers } = require('@pact-foundation/pact');
+const { Matchers } = require('@pact-foundation/pact');
 const axios = require('axios');
 
-const EXPECTED_BODY = [{
+const EXPECTED_RESTAURANT = {
   id: 255,
   name: 'Chez Tamir',
   cuisine: 'french',
@@ -10,8 +10,7 @@ const EXPECTED_BODY = [{
   max_delivery_time: 60,
   created_at: '2019-03-31T12:06:12.685Z',
   updated_at: '2019-03-31T12:06:12.685Z',
-  rating: 2.0,
-}];
+};
 
 const NEW_RESTAURANT_PAYLOAD = {
   name: 'Fat Diner',
@@ -19,10 +18,9 @@ const NEW_RESTAURANT_PAYLOAD = {
   accepts_10_bis: true,
   address: '422 Swift Groves',
   max_delivery_time: 103,
-  rating: 2.0,
 };
 
-const EXPECTED_POST_BODY = {
+const EXPECTED_POST_RESPONSE = {
   id: 257,
   name: 'Fat Diner',
   cuisine: 'Bar',
@@ -31,7 +29,6 @@ const EXPECTED_POST_BODY = {
   max_delivery_time: 103,
   created_at: '2019-04-29T09:15:06.451Z',
   updated_at: '2019-04-29T09:15:06.451Z',
-  rating: 2,
 };
 
 describe('Restaurants API', () => {
@@ -51,7 +48,7 @@ describe('Restaurants API', () => {
           headers: {
             'Content-Type': 'application/json; charset=utf-8',
           },
-          body: Matchers.eachLike(EXPECTED_BODY[0]),
+          body: Matchers.eachLike(EXPECTED_RESTAURANT),
         },
       };
       return provider.addInteraction(interaction);
@@ -61,40 +58,43 @@ describe('Restaurants API', () => {
     it('fetches restaurants', done => {
       axios.get(url)
         .then(response => {
-          expect(response.data).toEqual(EXPECTED_BODY);
+          expect(response.data).toEqual([EXPECTED_RESTAURANT]);
         })
         .then(done)
-        .catch(e => console.log(e));
+        .catch(e => console.log(JSON.stringify(e)));
     });
   });
 
-  // describe('Add Restaurant', () => {
-  //   beforeEach(() => {
-  //     const interaction = {
-  //       uponReceiving: 'a request for adding a restaurant',
-  //       withRequest: {
-  //         method: 'POST',
-  //         path: '/restaurants',
-  //         body: NEW_RESTAURANT_PAYLOAD,
-  //       },
-  //       willRespondWith: {
-  //         status: 200,
-  //         headers: {
-  //           'Content-Type': 'application/json',
-  //         },
-  //         body: Matchers.like(EXPECTED_POST_BODY),
-  //       },
-  //     };
-  //     return provider.addInteraction(interaction);
-  //   });
-  //
-  //   it('adds a restaurant', done => {
-  //     axios.post(url, NEW_RESTAURANT_PAYLOAD)
-  //       .then(response => {
-  //         expect(response.data).toEqual(EXPECTED_BODY);
-  //       })
-  //       .then(done)
-  //       .catch(e => console.log(e));
-  //   });
-  // });
+  describe('Add Restaurant', () => {
+    beforeEach(() => {
+      const interaction = {
+        uponReceiving: 'a request for adding a restaurant',
+        withRequest: {
+          method: 'POST',
+          path: '/restaurants',
+          body: NEW_RESTAURANT_PAYLOAD,
+          headers: {
+            'Content-Type': 'application/json;charset=utf-8',
+          }
+        },
+        willRespondWith: {
+          status: 201,
+          headers: {
+            'Content-Type': 'application/json; charset=utf-8',
+          },
+          body: Matchers.like(EXPECTED_POST_RESPONSE),
+        },
+      };
+      return provider.addInteraction(interaction);
+    });
+
+    it('adds a restaurant', done => {
+      axios.post(url, NEW_RESTAURANT_PAYLOAD)
+        .then(response => {
+          expect(response.data).toEqual(EXPECTED_POST_RESPONSE);
+        })
+        .then(done)
+        .catch(e => console.log(JSON.stringify(e)));
+    });
+  });
 });

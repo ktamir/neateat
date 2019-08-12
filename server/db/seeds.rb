@@ -12,7 +12,6 @@ Restaurant.delete_all
   Restaurant.create(
     name: Faker::Restaurant.name,
     cuisine: Faker::Restaurant.type,
-    rating: Faker::Number.between(1, 3),
     accepts_10_bis: Faker::Boolean,
     address: Faker::Address.street_address,
     max_delivery_time: Faker::Number.between(30, 120)

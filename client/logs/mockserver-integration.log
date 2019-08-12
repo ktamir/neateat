@@ -1,5 +1,5 @@
-I, [2019-04-29T17:08:27.435362 #26290]  INFO -- : Registered expected interaction GET /restaurants
-D, [2019-04-29T17:08:27.435573 #26290] DEBUG -- : {
+I, [2019-08-13T00:18:21.300539 #22998]  INFO -- : Registered expected interaction GET /restaurants
+D, [2019-08-13T00:18:21.300890 #22998] DEBUG -- : {
   "description": "a request for restaurants",
   "request": {
     "method": "GET",
@@ -20,15 +20,14 @@ D, [2019-04-29T17:08:27.435573 #26290] DEBUG -- : {
         "address": "144 Derech Menachem Begin",
         "max_delivery_time": 60,
         "created_at": "2019-03-31T12:06:12.685Z",
-        "updated_at": "2019-03-31T12:06:12.685Z",
-        "rating": 2
+        "updated_at": "2019-03-31T12:06:12.685Z"
       },
       "min": 1
     }
   }
 }
-I, [2019-04-29T17:08:27.451331 #26290]  INFO -- : Received request GET /restaurants
-D, [2019-04-29T17:08:27.451420 #26290] DEBUG -- : {
+I, [2019-08-13T00:18:21.320807 #22998]  INFO -- : Received request GET /restaurants
+D, [2019-08-13T00:18:21.320924 #22998] DEBUG -- : {
   "path": "/restaurants",
   "query": "",
   "method": "get",
@@ -44,8 +43,8 @@ D, [2019-04-29T17:08:27.451420 #26290] DEBUG -- : {
     "Version": "HTTP/1.1"
   }
 }
-I, [2019-04-29T17:08:27.451556 #26290]  INFO -- : Found matching response for GET /restaurants
-D, [2019-04-29T17:08:27.451625 #26290] DEBUG -- : {
+I, [2019-08-13T00:18:21.321079 #22998]  INFO -- : Found matching response for GET /restaurants
+D, [2019-08-13T00:18:21.321183 #22998] DEBUG -- : {
   "status": 200,
   "headers": {
     "Content-Type": "application/json; charset=utf-8"
@@ -60,17 +59,101 @@ D, [2019-04-29T17:08:27.451625 #26290] DEBUG -- : {
       "address": "144 Derech Menachem Begin",
       "max_delivery_time": 60,
       "created_at": "2019-03-31T12:06:12.685Z",
-      "updated_at": "2019-03-31T12:06:12.685Z",
-      "rating": 2
+      "updated_at": "2019-03-31T12:06:12.685Z"
     },
     "min": 1
   }
 }
-I, [2019-04-29T17:08:27.474147 #26290]  INFO -- : Verifying - interactions matched
-I, [2019-04-29T17:08:27.477447 #26290]  INFO -- : Cleared interactions
-I, [2019-04-29T17:08:27.481680 #26290]  INFO -- : Updating pact for neateat-server at /Users/tamir.kfir/onboarding/neateat/client/pacts/neateat-client-neateat-server.json
-I, [2019-04-29T17:08:27.482690 #26290]  INFO -- : *****************************************************************************
-I, [2019-04-29T17:08:27.482783 #26290]  INFO -- : Updating existing file ./Users/tamir.kfir/onboarding/neateat/client/pacts/neateat-client-neateat-server.json as pactfile_write_mode is :update
-I, [2019-04-29T17:08:27.482821 #26290]  INFO -- : Only interactions defined in this test run will be updated.
-I, [2019-04-29T17:08:27.482850 #26290]  INFO -- : As interactions are identified by description and provider state, pleased note that if either of these have changed, the old interactions won't be removed from the pact file until the specs are next run with :pactfile_write_mode => :overwrite.
-I, [2019-04-29T17:08:27.482876 #26290]  INFO -- : *****************************************************************************
+I, [2019-08-13T00:18:21.342023 #22998]  INFO -- : Verifying - interactions matched
+I, [2019-08-13T00:18:21.345965 #22998]  INFO -- : Cleared interactions
+I, [2019-08-13T00:18:21.351376 #22998]  INFO -- : Registered expected interaction POST /restaurants
+D, [2019-08-13T00:18:21.351521 #22998] DEBUG -- : {
+  "description": "a request for adding a restaurant",
+  "request": {
+    "method": "POST",
+    "path": "/restaurants",
+    "headers": {
+      "Content-Type": "application/json;charset=utf-8"
+    },
+    "body": {
+      "name": "Fat Diner",
+      "cuisine": "Bar",
+      "accepts_10_bis": true,
+      "address": "422 Swift Groves",
+      "max_delivery_time": 103
+    }
+  },
+  "response": {
+    "status": 201,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    "body": {
+      "json_class": "Pact::SomethingLike",
+      "contents": {
+        "id": 257,
+        "name": "Fat Diner",
+        "cuisine": "Bar",
+        "accepts_10_bis": true,
+        "address": "422 Swift Groves",
+        "max_delivery_time": 103,
+        "created_at": "2019-04-29T09:15:06.451Z",
+        "updated_at": "2019-04-29T09:15:06.451Z"
+      }
+    }
+  }
+}
+I, [2019-08-13T00:18:21.360571 #22998]  INFO -- : Received request POST /restaurants
+D, [2019-08-13T00:18:21.360734 #22998] DEBUG -- : {
+  "path": "/restaurants",
+  "query": "",
+  "method": "post",
+  "body": {
+    "name": "Fat Diner",
+    "cuisine": "Bar",
+    "accepts_10_bis": true,
+    "address": "422 Swift Groves",
+    "max_delivery_time": 103
+  },
+  "headers": {
+    "Content-Length": "111",
+    "Content-Type": "application/json;charset=utf-8",
+    "Accept": "application/json, text/plain, */*",
+    "Referer": "http://localhost/",
+    "User-Agent": "Mozilla/5.0 (darwin) AppleWebKit/537.36 (KHTML, like Gecko) jsdom/11.12.0",
+    "Accept-Language": "en",
+    "Origin": "http://localhost",
+    "Host": "localhost:8989",
+    "Accept-Encoding": "gzip, deflate",
+    "Connection": "close",
+    "Version": "HTTP/1.1"
+  }
+}
+I, [2019-08-13T00:18:21.361246 #22998]  INFO -- : Found matching response for POST /restaurants
+D, [2019-08-13T00:18:21.361410 #22998] DEBUG -- : {
+  "status": 201,
+  "headers": {
+    "Content-Type": "application/json; charset=utf-8"
+  },
+  "body": {
+    "json_class": "Pact::SomethingLike",
+    "contents": {
+      "id": 257,
+      "name": "Fat Diner",
+      "cuisine": "Bar",
+      "accepts_10_bis": true,
+      "address": "422 Swift Groves",
+      "max_delivery_time": 103,
+      "created_at": "2019-04-29T09:15:06.451Z",
+      "updated_at": "2019-04-29T09:15:06.451Z"
+    }
+  }
+}
+I, [2019-08-13T00:18:21.368675 #22998]  INFO -- : Verifying - interactions matched
+I, [2019-08-13T00:18:21.373088 #22998]  INFO -- : Cleared interactions
+I, [2019-08-13T00:18:21.377043 #22998]  INFO -- : Updating pact for neateat-server at /Users/tamir.kfir/onboarding/neateat/client/pacts/neateat-client-neateat-server.json
+I, [2019-08-13T00:18:21.378527 #22998]  INFO -- : *****************************************************************************
+I, [2019-08-13T00:18:21.378682 #22998]  INFO -- : Updating existing file ./Users/tamir.kfir/onboarding/neateat/client/pacts/neateat-client-neateat-server.json as pactfile_write_mode is :update
+I, [2019-08-13T00:18:21.378718 #22998]  INFO -- : Only interactions defined in this test run will be updated.
+I, [2019-08-13T00:18:21.378743 #22998]  INFO -- : As interactions are identified by description and provider state, pleased note that if either of these have changed, the old interactions won't be removed from the pact file until the specs are next run with :pactfile_write_mode => :overwrite.
+I, [2019-08-13T00:18:21.378769 #22998]  INFO -- : *****************************************************************************
