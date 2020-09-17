@@ -5,12 +5,12 @@
 #  id                :bigint(8)        not null, primary key
 #  name              :string
 #  cuisine           :string
-#  rating            :integer
 #  accepts_10_bis    :boolean
 #  address           :string
 #  max_delivery_time :integer
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
+#  rating            :float
 #
 
 require 'rails_helper'
@@ -23,4 +23,12 @@ RSpec.describe Restaurant, type: :model do
   it { should validate_presence_of :accepts_10_bis }
   it { should validate_presence_of :address }
   it { should validate_presence_of :max_delivery_time }
+  it { should have_many(:reviews).dependent(:destroy) }
+
+  describe 'Rating' do
+    it 'new restaurant should have null rating' do
+      restaurant = create(:restaurant)
+      expect(restaurant.rating).to be_nil
+    end
+  end
 end
